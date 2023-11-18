@@ -1,4 +1,6 @@
 ﻿Imports System.Runtime.Versioning
+Imports K4os.Compression.LZ4.Streams
+Imports Microsoft.VisualBasic.Devices
 Imports MySql.Data.MySqlClient
 
 Module Module1
@@ -124,16 +126,24 @@ Module Module1
         mysqlcmd.Parameters.AddWithValue("@uid", uid)
 
         Try
-
             reader = mysqlcmd.ExecuteReader()
 
             If reader.Read Then
-
-                Form1.txtfirst.text = reader("studFname").ToString()
+                Form1.txtfirst.Text = reader("studFname").ToString()
 
                 Form1.txtlast.text = reader("studLname").ToString()
 
                 Form1.txtstudcourse.Text = reader("course").ToString()
+
+                Form1.btndelete.Enabled = True
+
+                Form1.btnupdate.Enabled = True
+
+                Form1.txtfirst.Enabled = True
+
+                Form1.Txtlast.Enabled = True
+
+                Form1.txtstudcourse.Enabled = True
 
             Else
 
@@ -273,6 +283,67 @@ Module Module1
 
 
         End Try
+
+    End Sub
+
+    Public Sub updaterecord(studID As String, fname As String, lname As String, course As String)
+
+        sqlquery = "UPDATE student set studFname = @fname, studLname = @lname, course = @course where studID = @studID"
+
+        Try
+
+            Using cmd As New MySqlCommand(sqlquery, con)
+                cmd.Parameters.AddWithValue("@fname", fname)
+                cmd.Parameters.AddWithValue("@lname", lname)
+                cmd.Parameters.AddWithValue("@course", course)
+                cmd.Parameters.AddWithValue("@studid", studID)
+                cmd.ExecuteNonQuery()
+                MsgBox("Update Successful", vbInformation, "Update Message")
+
+
+            End Using
+
+        Catch ex As Exception
+
+            MsgBox("Error" & ex.Message, vbInformation, "Error Message")
+
+        Finally
+
+            Form1.txtfirst.Clear()
+            Form1.Txtlast.Clear()
+            Form1.txtstudcourse.Clear()
+
+        End Try
+
+    End Sub
+
+    Public Sub DeleteRecords(studid As String)
+
+        sqlquery = "delete from  student  where studid = @studid"
+
+        Try
+
+            Using cmd As New MySqlCommand(sqlquery, con)
+                cmd.Parameters.AddWithValue("@studid" , studid)
+
+                cmd.ExecuteNonQuery()
+                MsgBox("Deletion Successfull!", vbInformation, "Delete Message")
+
+
+            End Using
+
+        Catch ex As Exception
+
+            MsgBox("Error" & ex.Message, vbInformation, "Error Message")
+
+        Finally
+
+            Form1.txtfirst.Clear()
+            Form1.Txtlast.Clear()
+            Form1.txtstudcourse.Clear()
+
+        End Try
+
 
     End Sub
 

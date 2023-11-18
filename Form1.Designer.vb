@@ -41,6 +41,8 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnDisplay = New System.Windows.Forms.Button()
+        Me.btnupdate = New System.Windows.Forms.Button()
+        Me.btndelete = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -250,12 +252,32 @@ Partial Class Form1
         Me.btnDisplay.Text = "Display By Course"
         Me.btnDisplay.UseVisualStyleBackColor = False
         '
+        'btnupdate
+        '
+        Me.btnupdate.Location = New System.Drawing.Point(761, 461)
+        Me.btnupdate.Name = "btnupdate"
+        Me.btnupdate.Size = New System.Drawing.Size(99, 38)
+        Me.btnupdate.TabIndex = 4
+        Me.btnupdate.Text = "Update"
+        Me.btnupdate.UseVisualStyleBackColor = True
+        '
+        'btndelete
+        '
+        Me.btndelete.Location = New System.Drawing.Point(891, 461)
+        Me.btndelete.Name = "btndelete"
+        Me.btndelete.Size = New System.Drawing.Size(93, 38)
+        Me.btndelete.TabIndex = 5
+        Me.btndelete.Text = "Delete"
+        Me.btndelete.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(1046, 527)
+        Me.Controls.Add(Me.btndelete)
+        Me.Controls.Add(Me.btnupdate)
         Me.Controls.Add(Me.btnDisplay)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -290,4 +312,6 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents txtstudid As TextBox
     Friend WithEvents btnDisplay As Button
+    Friend WithEvents btnupdate As Button
+    Friend WithEvents btndelete As Button
 End Class
